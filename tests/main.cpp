@@ -1,12 +1,21 @@
+#include <iostream>
 
-#include "../src/main.h"
+#include "../src/aue.h"
 
 int main() {
-    aue::init(10, 10);
-    aue::place(1, 1, 'e');
-    aue::place(2, 2, 'e');
-    aue::place(3, 3, 'e');
-    aue::place(4, 4, 'e');
-    aue::place(5, 5, 'e');
-    aue::update();
+    // setWindowSize(30, 20);
+    setFrameMargin(30);
+    Frame frame(30, 20);
+    frame.setBackground(178);
+    frame.clear();
+    frame.place(1, 1, 'e');
+    frame.place(2, 2, 'e');
+    frame.place(3, 3, 'e');
+    frame.place(4, 4, 'e');
+    frame.place(5, 5, 'e');
+    frame.draw();
+    int a = getch();
+    int b = getch();
+    std::cout << a << b << std::endl;
+    // getch();
 }

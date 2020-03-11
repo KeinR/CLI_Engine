@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# g++ src/*.cpp tests/*.cpp -o test.exe
 mingw32-g++ src/*.cpp tests/*.cpp -o test.exe

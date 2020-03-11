@@ -1,15 +1,18 @@
-#ifndef FRAME_H_INCLUDED
-#define FRAME_H_INCLUDED
+#ifndef AUE_H_INCLUDED
+#define AUE_H_INCLUDED
 
-// Not thread safe
+void setFrameMargin(const int &n);
+void setWindowSize(const int &width, const int &height);
 
-#define AUE_BOUNDS_CHECKS
+#if (defined(WIN32) || defined(_WIN32) || defined(__WIN32)) && !defined(__CYGWIN__) // platform check
+    #include <conio.h>
+#else
+int getch();
+#endif // End platform check
 
-#ifdef AUE_BOUNDS_CHECKS
 struct aueException {
     std::string message;
 };
-#endif // end AUE_BOUNDS_CHECKS
 class Frame {
     char **buffer;
     int bufferWidth;
@@ -33,4 +36,4 @@ class Frame {
     void setBackground(const unsigned char &c);
 };
 
-#endif // end FRAME_H_INCLUDED
+#endif // end AUE_H_INCLUDED

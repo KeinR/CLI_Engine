@@ -2,5 +2,6 @@
 #define MAIN_H_INCLUDED
 
 int rand();
+void update();
 
 #endif

@@ -1,23 +1,14 @@
 #ifndef TILE_H_INCLUDED
 #define TILE_H_INCLUDED
 
+#include <functional>
+
 class Tile {
+    std::function<void()> *event;
+    bool done = false;
     public:
-    Tile() = default;
-    virtual void open() = 0;
+    Tile();
+    void open();
 };
-
-class EmptyTile: public Tile {
-    public:
-    EmptyTile();
-    void open() override;
-};
-
-class GoldTile: public Tile {
-    public:
-    GoldTile();
-    void open() override;
-};
-
 
 #endif

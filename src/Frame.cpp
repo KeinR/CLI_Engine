@@ -118,11 +118,9 @@ void Frame::clear() {
 }
 
 void Frame::draw() {
-    printMargin();
+    system("clear"); // Fuck off it works alright?
     for (int y = 0; y < bufferHeight; y++) {
-        for (int x = 0; x < bufferWidth; x++) {
-            std::cout << buffer[y][x];
-        }
+        std::cout.write(buffer[y], bufferWidth);
         std::cout << std::endl;
     }
 }

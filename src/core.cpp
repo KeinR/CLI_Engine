@@ -1,26 +1,11 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
+#include <termios.h>
+#include <cstdio>
 
 #include "Frame.h"
 #include "core.h"
-
-// stty size
-
-int marginCount = 0;
-char *marginN;
-
-void printMargin() {
-    std::cout.write(marginN, marginCount);
-}
-
-void setFrameMargin(const int &n) {
-    if (marginCount != 0) {
-        delete[] marginN;
-    }
-    marginCount = n;
-    marginN = new char[n];
-    std::fill_n(marginN, n, '\n');
-}
 
 void setWindowSize(const int &width, const int &height) {
     std::string s = "\x1b[8;";
@@ -30,12 +15,6 @@ void setWindowSize(const int &width, const int &height) {
     s += "t";
     std::cout << s;
 }
-
-#if (!defined(WIN32) && !defined(_WIN32) && !defined(__WIN32)) || defined(__CYGWIN__) // platform check
-
-    #include <unistd.h>
-    #include <termios.h>
-    #include <cstdio>
 
 int getch() {
     char buf = 0;
@@ -54,8 +33,6 @@ int getch() {
     old.c_lflag |= ICANON;
     old.c_lflag |= ECHO;
     if(tcsetattr(0, TCSADRAIN, &old) < 0)
-        perror("tcsetattr ~ICANON")
+        perror("tcsetattr ~ICANON");
     return buf;
 }
-
-#endif // End platform check
